@@ -11,52 +11,6 @@ int best;
 
 const int INF = 1e9;
 
-vector<int> dsatur(vector<vector<int>>& graph) {
-	int n = graph.size(); // число вершин
-	vector<int> colors(n, -1); // цвета вершин
-	vector<set<int>> sat(n); // степень насыщения
-
-	queue<int> q;
-	q.push(0);
-	while (!q.empty()) { // обход в ширину
-		int v = q.front();
-		q.pop();
-
-		vector<bool> available(n, 0);
-		for (int i : graph[v]) {
-			if (colors[i] != -1)
-				available[colors[i]] = 1;
-		}
-
-		int min_color = 0;
-		while (available[min_color] == 1)
-			min_color++;
-
-		colors[v] = min_color;
-
-		for (int i : graph[v]) {
-			sat[i].insert(min_color); // пересчитываем степень насыщения для смежных вершин
-		}
-
-		int mx = -1, next_vertex = -1, deg = -1;
-		// процесс выбора следующей вершины по двум критериям:
-		// 1) степень насыщения
-		// 2) степень вершины
-		for (int i = 0; i < n; i++) {
-			if (colors[i] == -1 && (mx < (int)sat[i].size() ||
-				mx == (int)sat[i].size() && (int)graph[i].size() > deg)) {
-				mx = sat[i].size();
-				next_vertex = i;
-				deg = graph[i].size();
-			}
-		}
-
-		if (next_vertex != -1)
-			q.push(next_vertex); // выбираем следующую вершину для обхода в ширину
-
-	}
-	return colors;
-}
 
 int next_vertex(vector<vector<int>>& edges, vector<set<int>>& sat, vector<int>& solution) {
 	int mx = -1, next_vertex = -1, deg = -1;
