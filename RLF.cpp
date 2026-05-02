@@ -143,7 +143,7 @@ int rlf_graph_coloring(int n, const vector<vector<bool>>& adj, vector<int>& colo
     return color - 1;
 }
 
-// Функция генерации случайного графа
+
 vector<vector<bool>> generate_random_graph(int n, int m) {
     vector<vector<bool>> adj(n, vector<bool>(n, false));
 
@@ -167,14 +167,6 @@ vector<vector<bool>> generate_random_graph(int n, int m) {
 
 int main() {
     setlocale(LC_ALL, "Russian");
-    cout << "=== Эксперименты с алгоритмом RLF для раскраски графов ===\n\n";
-
-
-
-    cout << "\n=== Эксперимент с фиксированным числом вершин и разной плотностью ===\n";
-    cout << "Вершин: 500\n";
-    cout << "Плотность\tРебер\tЦветов\tВремя(мс)\n";
-    cout << "------------------------------------------------\n";
 
     int n_fixed = 200;
     vector<double> densities = { 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 };
@@ -195,10 +187,6 @@ int main() {
              << "\t\t" << time_ms << "\n";
     }
 
-    cout << "\n=== Эксперимент с фиксированной плотностью и разным числом вершин ===\n";
-    cout << "Плотность: 0.1 (10% ребер)\n";
-    cout << "Вершин\tРебер\tЦветов\tНижняя гр.\tВремя(мс)\tОтношение\n";
-    cout << "----------------------------------------------\n";
 
     double fixed_density = 0.1;
     vector<int> vertices_sizes = { 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000 };
